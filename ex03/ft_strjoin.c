@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:15:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 22:13:11 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/21 01:21:38 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char		*result;
-	char		*_result;
-	unsigned	len;
-	unsigned	sep_len;
-	int			i;
+	char			*result;
+	char			*_result;
+	unsigned int	len;
+	unsigned int	sep_len;
+	int				i;
 
 	sep_len = ft_strlen(sep);
-		len = (1 < size) * (size - 1) * sep_len + 1;
+	len = (1 < size) * (size - 1) * sep_len + 1;
 	i = 0;
 	while (i < size)
 		len += ft_strlen(*(strs + i++));
