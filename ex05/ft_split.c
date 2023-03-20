@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:29:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 13:31:12 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:08:34 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,4 @@ char	**ft_split(char *str, char *charset)
 	}
 	result[i] = 0;
 	return (result);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	char *str;
-	char *charset;
-	char **ans;
-
-	str = "_hello__";
-	charset = "+_";
-	ans = ft_split(str, charset);
-	printf("0: %s\n", ans[0]);
-	printf("1: %s\n", ans[1]);
-	printf("2: %s\n", ans[2]);
-	printf("3: %s\n", ans[3]);
-	printf("4: %s\n", ans[4]);
 }
