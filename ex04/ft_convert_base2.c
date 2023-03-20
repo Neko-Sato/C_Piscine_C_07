@@ -6,11 +6,9 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:25:29 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 14:07:35 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/21 01:16:53 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 
 int	ft_strlduplicate(char *str)
 {
@@ -36,47 +34,39 @@ int	digits_base(int nbr, int base)
 {
 	int	i;
 
-	if (nbr == 0)
-		return (1);
 	i = 0;
-	while (nbr)
-	{
-		nbr /= base;
-		i++;
-	}
+	if (nbr != 0)
+		while (nbr)
+			nbr /= base + 0 * i++;
+	else
+		i = 1;
 	return (i);
 }
 
-char	*num_store(char *result, unsigned int nbr, unsigned int base,
+char	*num_store(char *str, unsigned int nbr, unsigned int base,
 		char *replace)
 {
 	if (!nbr)
-		return (result);
-	result = num_store(result, nbr / base, base, replace);
-	*result = *(replace + nbr % base);
-	return (result + 1);
+		return (str);
+	str = num_store(str, nbr / base, base, replace);
+	*str = *(replace + nbr % base);
+	return (str + 1);
 }
 
-char	*ft_itoa_base(int nbr, char *base)
+int	str_index(char c, char *str)
 {
-	char	*result;
-	char	*_result;
-	int		base_length;
-	int		nbr_len;
+	char	*_str;
 
-	base_length = ft_strlduplicate(base);
-	if (base_length <= 1)
-		return (NULL);
-	nbr_len = digits_base(nbr * (1 + -2 * (nbr < 0)), base_length);
-	result = (char *)malloc((base_length + (nbr < 0) + 1) * sizeof(char));
-	_result = result;
-	if (nbr < 0)
-	{
-		*result++ = '-';
-		nbr *= -1;
-	}
-	if (nbr == 0)
-		*result++ = base[0];
-	*num_store(result, nbr, base_length, base) = '\0';
-	return (_result);
+	_str = str;
+	while (*str)
+		if (*(str++) == c)
+			return (str - _str);
+	return (-1);
+}
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		n *= -1;
+	return (n);
 }
