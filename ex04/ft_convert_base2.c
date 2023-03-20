@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:25:29 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/19 21:49:26 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:07:35 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	digits_base(int nbr, int base)
 {
 	int	i;
 
+	if (nbr == 0)
+		return (1);
 	i = 0;
 	while (nbr)
 	{
@@ -63,7 +65,7 @@ char	*ft_itoa_base(int nbr, char *base)
 	int		nbr_len;
 
 	base_length = ft_strlduplicate(base);
-	if (!base_length)
+	if (base_length <= 1)
 		return (NULL);
 	nbr_len = digits_base(nbr * (1 + -2 * (nbr < 0)), base_length);
 	result = (char *)malloc((base_length + (nbr < 0) + 1) * sizeof(char));
@@ -73,6 +75,8 @@ char	*ft_itoa_base(int nbr, char *base)
 		*result++ = '-';
 		nbr *= -1;
 	}
+	if (nbr == 0)
+		*result++ = base[0];
 	*num_store(result, nbr, base_length, base) = '\0';
 	return (_result);
 }
