@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:15:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 21:31:26 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:13:11 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,44 @@ unsigned int	ft_strlen(char *str)
 	return (i);
 }
 
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
+{
+	char	*_dest;
+
+	_dest = dest;
+	while (n--)
+	{
+		*dest = *src;
+		dest++;
+		src += *src != '\0';
+	}
+	return (_dest);
+}
+
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char	*result;
-	int		len;
-	int		i[3];
+	char		*result;
+	char		*_result;
+	unsigned	len;
+	unsigned	sep_len;
+	int			i;
 
-	len = (0 < size) * (size - 1) * ft_strlen(sep) + 1;
-	i[0] = 0;
-	while (i[0] < size)
-		len += ft_strlen(strs[i[0]++]);
+	sep_len = ft_strlen(sep);
+		len = (1 < size) * (size - 1) * sep_len + 1;
+	i = 0;
+	while (i < size)
+		len += ft_strlen(*(strs + i++));
 	result = (char *)malloc(len * sizeof(char));
-	i[0] = 0;
-	i[1] = 0;
-	i[2] = 0;
-	while (i[1] < size)
+	_result = result;
+	i = 0;
+	while (i < size)
 	{
-		len = ft_strlen(strs[i[1]]);
-		while (i[2] < len)
-			result[i[0]++] = strs[i[1]][i[2]++];
-		if (i[1]++ >= size - 1)
+		len = ft_strlen(*(strs + i));
+		result = ft_strncpy(result, *(strs + i), len) + len;
+		if (++i >= size)
 			break ;
-		i[2] = 0;
-		while (sep[i[2]])
-			result[i[0]++] = sep[i[2]++];
-		i[2] = 0;
+		result = ft_strncpy(result, sep, sep_len) + sep_len;
 	}
-	result[i[0]++] = '\0';
-	return (result);
+	*result = '\0';
+	return (_result);
 }
