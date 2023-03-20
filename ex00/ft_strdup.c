@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 19:39:33 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/19 20:22:11 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:28:31 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ char	*ft_strdup(char *src)
 	unsigned int	len;
 
 	len = ft_strlen(src);
-	dest = (char *)malloc(len + 1);
+	dest = (char *)malloc((len + 1) * sizeof(char));
 	_dest = dest;
 	if (dest)
 	{
 		while (1)
 		{
-			*dest = *src++;
-			if (!*dest++)
+			*dest++ = *src;
+			if (!*src++)
 				break ;
 		}
 	}
+	*dest = '\0';
 	return (_dest);
 }
