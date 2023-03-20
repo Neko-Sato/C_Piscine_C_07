@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:15:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/19 16:34:54 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:15:36 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,44 +17,36 @@ unsigned int	ft_strlen(char *str)
 	unsigned int	i;
 
 	i = 0;
-	while (*(str++))
+	while (str[i])
 		i++;
 	return (i);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char *result;
-	int len;
-	char **_strs;
-	char *_str;
-	char *_sep;
-	char *_result;
+	char			*result;
+	unsigned int	len;
+	int				i[3];
 
-	len = (size - 1) * ft_strlen(sep);
-	_str = str;
-	while (*strs)
-		len += ft_strlen(*strs++);
-	str = _str;
+	len = 1 + ft_strlen(sep) * (size - 1);
+	i[0] = 0;
+	while (strs[i[0]])
+		len += ft_strlen(strs[i[0]++]);
 	result = (char *)malloc((len + 1) * sizeof(char));
-	_result = result;
-	while (*strs)
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 0;
+	while (strs[i[1]])
 	{
-		_str = *strs;
-		while (**strs)
-			*result++ = *(*strs)++;
-		*strs = _str;
-		strs++;
-		if (!*strs)
+		while (strs[i[1]][i[2]])
+			result[i[0]++] = strs[i[1]][i[2]++];
+		if (!strs[++i[1]])
 			break ;
-		_sep = sep;
-		while (*sep)
-			*result++ = *sep++;
-		sep = _sep;
+		i[2] = 0;
+		while (sep[i[2]])
+			result[i[0]++] = sep[i[2]++];
+		i[2] = 0;
 	}
-	strs = _strs;
-	result = '\0';
-	return (_result);
+	result[i[0]++] = '\0';
+	return (result);
 }
-
-int main(){}

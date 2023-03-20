@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 14:18:23 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/19 20:20:11 by hshimizu         ###   ########.fr       */
+/*   Created: 2023/03/18 19:39:33 by hshimizu          #+#    #+#             */
+/*   Updated: 2023/03/19 20:22:11 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	*ft_range(int min, int max)
+unsigned int	ft_strlen(char *str)
 {
-	int	*range;
-	int	*_range;
+	unsigned int	i;
 
-	if (min >= max)
-		return (NULL);
-	range = (int *)malloc((max - min) * sizeof(int));
-	_range = range;
-	while (min < max)
-		*range++ = min++;
-	return (_range);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *src)
+{
+	char			*dest;
+	char			*_dest;
+	unsigned int	len;
+
+	len = ft_strlen(src);
+	dest = (char *)malloc(len + 1);
+	_dest = dest;
+	if (dest)
+	{
+		while (1)
+		{
+			*dest = *src++;
+			if (!*dest++)
+				break ;
+		}
+	}
+	return (_dest);
 }
