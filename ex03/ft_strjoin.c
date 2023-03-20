@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:15:45 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 13:20:42 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:31:26 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,24 @@ unsigned int	ft_strlen(char *str)
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char			*result;
-	unsigned int	len;
-	int				i[3];
+	char	*result;
+	int		len;
+	int		i[3];
 
-	len = 1 + ft_strlen(sep) * (size - 1);
+	len = (0 < size) * (size - 1) * ft_strlen(sep) + 1;
 	i[0] = 0;
 	while (i[0] < size)
 		len += ft_strlen(strs[i[0]++]);
-	result = (char *)malloc((len + 1) * sizeof(char));
+	result = (char *)malloc(len * sizeof(char));
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = 0;
 	while (i[1] < size)
 	{
-		while (strs[i[1]][i[2]])
+		len = ft_strlen(strs[i[1]]);
+		while (i[2] < len)
 			result[i[0]++] = strs[i[1]][i[2]++];
-		if (!strs[++i[1]])
+		if (i[1]++ >= size - 1)
 			break ;
 		i[2] = 0;
 		while (sep[i[2]])
