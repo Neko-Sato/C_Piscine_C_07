@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:36:38 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 20:31:25 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:36:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,4 @@ int	ft_ultimate_range(int **range, int min, int max)
 		*((*range)++) = min++;
 	*range -= len;
 	return (len);
-}
-
-#include <stdio.h>
-
-int	main(void)
-{
-	int *p;
-	int len;
-
-	int max = 100;
-	int min = 0;
-	len = ft_ultimate_range(&p, min, max);
-	while (len > 0)
-	{
-		printf("%d\n", *p);
-		p++;
-		len--;
-	}
 }
