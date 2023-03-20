@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:24:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 05:09:00 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:15:28 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int		ft_strlduplicate(char *str);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int	n;
-
 	if (!ft_strlduplicate(base_from))
 		return (NULL);
 	return (ft_itoa_base(ft_atoi_base(nbr, base_from), base_to));
@@ -68,5 +66,6 @@ int	ft_atoi_base(char *str, char *base)
 // #include <stdio.h>
 // int	main(int argc, char *argv[])
 // {
+// 	argc *= 1;
 // 	printf("%s\n", ft_convert_base(argv[1], argv[2], argv[3]));
 // }
