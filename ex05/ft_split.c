@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:29:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 14:08:34 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:54:38 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ unsigned int	get_word_count(char *str, char *delim)
 	word_num = 0;
 	_str = str;
 	_delim = delim;
-	while (1)
+	while (*delim)
 	{
-		delim = _delim;
 		while (*delim && *(str + (delim - _delim)) == *delim)
 			delim++;
 		if (!*delim)
-			word_num++;
+ 			word_num++;
 		if (!*str)
 			break ;
 		str++;
+		delim = _delim;
 	}
 	return (word_num + 1);
 }
@@ -65,7 +65,7 @@ char	*get_next_word(char *str, char *delim)
 
 	_str = str;
 	_delim = delim;
-	while (1)
+	while (*delim)
 	{
 		delim = _delim;
 		while (*delim && *(str + (delim - _delim)) == *delim)
@@ -75,6 +75,8 @@ char	*get_next_word(char *str, char *delim)
 		str++;
 	}
 	word_len = str - _str;
+	if (!word_len)
+		word_len = ft_strlen(str);
 	word = (char *)malloc((word_len + 1) * sizeof(char));
 	ft_strlcpy(word, _str, (word_len + 1));
 	return (word);
