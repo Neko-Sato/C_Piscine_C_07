@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:29:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/21 10:54:38 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:05:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ unsigned int	get_word_count(char *str, char *delim)
 		while (*delim && *(str + (delim - _delim)) == *delim)
 			delim++;
 		if (!*delim)
- 			word_num++;
+			word_num++;
 		if (!*str)
 			break ;
 		str++;
