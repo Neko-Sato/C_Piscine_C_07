@@ -6,97 +6,84 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:29:27 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/21 13:05:01 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:18:27 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-unsigned int	ft_strlen(char *str)
+int	is_contains_char(char c, char *charset)
 {
-	int	i;
-
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
+	while (*charset && c != *charset)
+		charset++;
+	if (*charset)
+		return (1);
+	return (0);
 }
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	n;
 
-	n = ft_strlen(src);
+	n = 0;
+	while (*(dest + n))
+		n++;
 	while (1 < size-- && *src)
 		*(dest++) = *(src++);
 	*dest = '\0';
 	return (n);
 }
 
-unsigned int	get_word_count(char *str, char *delim)
+unsigned int	get_word_count(char *str, char *charset)
 {
-	unsigned int	word_num;
-	char			*_str;
-	char			*_delim;
+	unsigned int	count;
 
-	word_num = 0;
-	_str = str;
-	_delim = delim;
-	while (*delim)
+	count = 0;
+	while (*str)
 	{
-		while (*delim && *(str + (delim - _delim)) == *delim)
-			delim++;
-		if (!*delim)
-			word_num++;
-		if (!*str)
-			break ;
-		str++;
-		delim = _delim;
+		while (*str && is_contains_char(*str, charset))
+			str++;
+		if (*str)
+			count++;
+		while (*str && !is_contains_char(*str, charset))
+			str++;
 	}
-	return (word_num + 1);
+	return (count);
 }
 
-char	*get_next_word(char *str, char *delim)
+char	*get_next_word(char *str, char *charset)
 {
-	char			*word;
-	unsigned int	word_len;
-	char			*_str;
-	char			*_delim;
+	char	*word;
+	char	*_str;
 
-	_str = str;
-	_delim = delim;
-	while (*delim)
-	{
-		delim = _delim;
-		while (*delim && *(str + (delim - _delim)) == *delim)
-			delim++;
-		if (!*delim || !*str)
-			break ;
+	while (*str && is_contains_char(*str, charset))
 		str++;
-	}
-	word_len = str - _str;
-	if (!word_len)
-		word_len = ft_strlen(str);
-	word = (char *)malloc((word_len + 1) * sizeof(char));
-	ft_strlcpy(word, _str, (word_len + 1));
+	_str = str;
+	while (*str && !is_contains_char(*str, charset))
+		str++;
+	word = (char *)malloc((str - _str + 1) * sizeof(char));
+	ft_strlcpy(word, _str, str - _str + 1);
 	return (word);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	char			**result;
-	unsigned int	word_count;
-	unsigned int	charset_len;
-	unsigned int	i;
+	char	**result;
+	int		words_num;
+	int		i;
+	int		n;
 
-	word_count = get_word_count(str, charset);
-	charset_len = ft_strlen(charset);
-	result = (char **)malloc((word_count + 1) * sizeof(char *));
+	words_num = get_word_count(str, charset);
+	result = (char **)malloc((words_num + 1) * sizeof(char *));
 	i = 0;
-	while (i < word_count)
+	while (i < words_num)
 	{
 		result[i] = get_next_word(str, charset);
-		str += ft_strlen(result[i]) + charset_len;
+		n = 0;
+		while (*str && is_contains_char(*str, charset))
+			str++;
+		while (*str && !is_contains_char(*str, charset))
+			str++;
 		i++;
 	}
 	result[i] = 0;
