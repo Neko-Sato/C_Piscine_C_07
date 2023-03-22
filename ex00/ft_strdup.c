@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 19:39:33 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 12:28:31 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:10:42 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strdup(char *src)
 			if (!*src++)
 				break ;
 		}
+		*dest = '\0';
 	}
-	*dest = '\0';
 	return (_dest);
 }
