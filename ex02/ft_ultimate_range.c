@@ -6,11 +6,10 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:36:38 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/20 20:36:01 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:08:01 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
 int	ft_ultimate_range(int **range, int min, int max)
@@ -24,10 +23,10 @@ int	ft_ultimate_range(int **range, int min, int max)
 		return (0);
 	}
 	*range = (int *)malloc(len * sizeof(int));
-	if (!range)
+	if (!*range)
 		return (-1);
 	while (min < max)
-		*((*range)++) = min++;
+		*(*range)++ = min++;
 	*range -= len;
 	return (len);
 }
