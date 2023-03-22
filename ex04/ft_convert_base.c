@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:24:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/21 01:20:02 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:29:29 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_itoa_base(int nbr, char *base)
 	result = str;
 	if (nbr < 0)
 		*(str++) = '-';
-	nbr = abs(nbr);
+	nbr = ft_abs(nbr);
 	if (nbr == 0)
 		*(str++) = base[0];
 	*num_store(str, nbr, base_length, base) = '\0';
