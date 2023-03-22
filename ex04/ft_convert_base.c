@@ -6,7 +6,7 @@
 /*   By: hshimizu <hshimizu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:24:30 by hshimizu          #+#    #+#             */
-/*   Updated: 2023/03/22 16:29:29 by hshimizu         ###   ########.fr       */
+/*   Updated: 2023/03/23 06:48:23 by hshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	*ft_atoi_base(char *str, char *base)
 	{
 		temp = str_index(*(str++), base) - 1;
 		if (temp < 0)
-			return (NULL);
+			break ;
 		sign_nbr[1] = sign_nbr[1] * base_length + temp;
 	}
 	result = (int *)malloc(sizeof(int));
